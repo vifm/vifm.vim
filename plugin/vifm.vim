@@ -92,6 +92,7 @@ function! s:StartVifm(editcmd, ...)
 				buffer #
 				silent! bdelete! #
 				call s:HandleRunResults(a:code, data.listf, data.typef, data.editcmd)
+				call feedkeys("\<esc>", 'n')
 			endfunction
 			enew
 			let buf = term_start(['/bin/sh', '-c',
