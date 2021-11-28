@@ -38,6 +38,19 @@ The interface between the plugin and Vifm has changed significantly in v0.8.
 Other than that versions don't have to match perfectly for all basic
 functionality to work correctly.
 
+### Installation ###
+  [Pacman](https://archlinux.org/packages/core/x86_64/pacman/)
+
+  1. Install with the following command.
+  ```bash
+  sudo pacman -S vifm
+  ```
+  2. Add the following configuration to your ``` .vimrc ```
+  ```
+  Plugin 'vifm/vifm.vim'
+  ```
+  3. Install with `:PluginInstall`.
+
 ### Screenshot ###
 
 ![Screenshot](screenshot.png)
