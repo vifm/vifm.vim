@@ -1,13 +1,13 @@
 " Vim script that converts Vim colorschemes to Vifm
-" Author:      Roman Plšl
+" Author:      Roman Plášil
 " Maintainer:  xaizek <xaizek@posteo.net>
 " Last Change: September 21, 2021
 
 function! s:ConvertGroup(gr, to, deffg, defbg)
 	let syn = synIDtrans(hlID(a:gr))
-	let fg = synIDattr(syn, "fg")
-	let bg = synIDattr(syn, "bg")
-	let prefix = 'cterm'
+	let fg = synIDattr(syn, "fg#")
+	let bg = synIDattr(syn, "bg#")
+	let defprefix = 'cterm'
 	let bold = (synIDattr(syn, "bold") == "1")
 	let reverse = (synIDattr(syn, "reverse") == "1")
 	let errors = []
@@ -16,24 +16,28 @@ function! s:ConvertGroup(gr, to, deffg, defbg)
 	if fg[0] == '#' || bg[0] == '#'
 		let fg = synIDattr(syn, "fg#")
 		let bg = synIDattr(syn, "bg#")
-		let prefix = 'gui'
+		let defprefix = 'gui'
 	endif
 
 	" handle foreground
+	let prefix = defprefix
 	if empty(fg)
 		let errors += [
 			\'" - incomplete source color scheme: missing fg of ' . a:gr
 		\]
 		let fg = a:deffg
+		let prefix = 'cterm'
 	endif
 	let line .= " " . prefix . "fg=" . fg
 
 	" handle background
+	let prefix = defprefix
 	if empty(bg)
 		let errors += [
 			\'" - incomplete source color scheme: missing bg of ' . a:gr
 		\]
 		let bg = a:defbg
+		let prefix = 'cterm'
 	endif
 	let line .= " " . prefix . "bg=" . bg
 
