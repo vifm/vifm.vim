@@ -6639,8 +6639,8 @@ Available actions:
     If the destination file is shorter, append the missing tail bytes from the
     source file.
     Example: if the source is 1000 bytes and the destination is 300
-    bytes, the last 700 bytes of the source are appended.  This is intended
-    for resuming interrupted copy operations.
+    bytes in size, the last 700 bytes of the source are appended.  This action
+    is intended for resuming interrupted copy operations.
 
 Notes:
 
