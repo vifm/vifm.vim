@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 January 13
+*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 January 23
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -1278,7 +1278,7 @@ Supported mechanisms:
     Also form a single argument.
     A backslash inside double quotes escapes the next character (for example,
     \" becomes a quote, \\ becomes a backslash).
-    Some C‑style escape sequences are interpreted (`\a`, `\b`, `\f`, `\n`,
+    Some C-style escape sequences are interpreted (`\a`, `\b`, `\f`, `\n`,
     `\r`, `\t`, `\v`).
 
     Example:
