@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 January 23
+*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 February 17
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -1681,6 +1681,8 @@ The builtin commands are:
 :[range]co[py][!] name1 name2...[ &]
     copy files to directory of other view giving each next file a
     corresponding name from the argument list.  "!" forces overwrite.
+:[range]co[py][!?] -deep ...
+    see |vifm-deep-param|.
 :[range]co[py][!?] -skip ...
     see |vifm-skip-param|.
 
@@ -2975,9 +2977,21 @@ Some of the command-line commands accept parameters in the form of
 parameters and positional arguments.  Items from the two groups cannot be
 interleaved and parameters always come first.  List of parameters is
 terminated implicitly by the first argument that doesn't start with a
-dash ("-") or explicitly via "--" separator (needs to be a separate
-argument), which is just discarded.  These strict rules allow arbitrary
-positional arguments, such as file names that start with a dash.
+dash ("-") or explicitly via "--" separator (must be a separate argument),
+which is just discarded.  These strict rules allow arbitrary positional
+arguments, such as file names that start with a dash.
+
+-deep                                                      *vifm-deep-param*
+This parameter makes |vifm-:copy| resolve symbolic links in the source.
+
+Note that when |vifm-'syscalls'| is on, the behaviour differs from that of
+`cp -L` (same as `cp --dereference`) in cases when a symbolic link's target
+can't be meaningfully copied:
+ - when link's target doesn't exist (broken link)
+ - when link to a directory creates a cycle
+In both cases `cp` prints an error and doesn't create anything at the
+destination but vifm copies symbolic links as is to preserve file structure.
+This implementation detail may change in the future or become configurable.
 
 -skip                                                      *vifm-skip-param*
 This parameter makes |vifm-:copy|, |vifm-:move|, |vifm-:alink| and
