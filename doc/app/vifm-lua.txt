@@ -1,4 +1,4 @@
-*vifm-lua.txt*    For Vifm version 1.0  Last change: 2026 Jan 13
+*vifm-lua.txt*    For Vifm version 1.0  Last change: 2026 Apr 17
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -675,6 +675,11 @@ Parameters:~
 Return:~
   `true` on success.  Trying to create path that already exists is not
   considered to be an error.
+
+vifm.redraw()                                  *vifm-l_vifm.redraw()*
+Requests a redraw of the entire UI.  The requests accumulate until an explicit
+redraw happens or a point at which such requests are dispatched is hit (e.g.,
+before waiting for user input), whichever comes earlier.
 
 vifm.run({info})                               *vifm-l_vifm.run()*
 Runs an external command similar to |vifm-:!|.  Waits for it to finish if
@@ -1661,6 +1666,7 @@ vifm.fnamemodify({path}, {mods}[, {base}]) |vifm-l_vifm.fnamemodify()|
 vifm.input({info})                         |vifm-l_vifm.input()|
 vifm.makepath({path})                      |vifm-l_vifm.makepath()|
 vifm.otherview()                           |vifm-l_vifm.otherview()|
+vifm.redraw()                              |vifm-l_vifm.redraw()|
 vifm.run({info})                           |vifm-l_vifm.run()|
 vifm.startjob({job})                       |vifm-l_vifm.startjob()|
 vifm.stdout()                              |vifm-l_vifm.stdout()|
