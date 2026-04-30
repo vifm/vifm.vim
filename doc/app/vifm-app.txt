@@ -3914,6 +3914,16 @@ When this option is set, search and view update for local filter is be
 performed starting from initial cursor position each time search pattern is
 changed.
 
+                                               *vifm-'keepsel'*
+keepsel
+type: boolean
+default: false
+
+By default, vifm will reset the selection when switching from command-line
+mode to normal mode, even if no command was executed. Setting this option
+makes vifm retain the current selection when switching from command-line mode
+or menu mode to normal mode.
+
                                                *vifm-'iooptions'*
 iooptions
 type: set
