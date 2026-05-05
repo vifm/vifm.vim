@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 April 7
+*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 May 5
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -2301,7 +2301,8 @@ important in certain cases.
     preserve selection during some :command by default.  Note that this
     doesn't save and restore selection to preserve it no matter what, but
     precludes its clearing at the end of a command and thus won't help if
-    selection is cleared explicitly during operation.
+    selection is cleared explicitly during operation.  See also
+    |vifm-'keepsel'| option.
 
     Example: >
       :keepsel view
@@ -3919,10 +3920,12 @@ keepsel
 type: boolean
 default: false
 
-By default, vifm will reset the selection when switching from command-line
-mode to normal mode, even if no command was executed. Setting this option
-makes vifm retain the current selection when switching from command-line mode
-or menu mode to normal mode.
+By default, vifm resets the selection when switching from to normal mode, even
+if no action was taken in the other mode.  Setting this option makes vifm
+retain the current selection in these contexts:
+ - after executing :commands or aborting command-line mode
+ - after aborting file attributes dialog
+ - after closing a menu
 
                                                *vifm-'iooptions'*
 iooptions
