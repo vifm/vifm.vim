@@ -1,5 +1,5 @@
 " Maintainer: xaizek <xaizek@posteo.net>
-" Last Change: 28 September 2025
+" Last Change: 30 April 2026
 
 " Author: Ken Steen <ksteen@users.sourceforge.net>
 " Last Change: 29 November 2001
@@ -36,7 +36,7 @@ catch /E319:/ " command is not available
 catch /E492:/ " not an editor command
 endtry
 
-let s:tab_drop_cmd = (s:has_drop ? 'tablast | tab drop' : 'tabedit')
+let s:tab_drop_cmd = (s:has_drop ? 'tab drop' : 'tabedit')
 
 command! -bar -nargs=* -count -complete=dir Vifm
 			\ :call s:StartVifm('<mods>', <count>, 'edit', <f-args>)
