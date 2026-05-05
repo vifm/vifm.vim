@@ -1,6 +1,6 @@
 " vifm syntax file
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: Apr 30, 2026
+" Last Change: May 5, 2026
 " Inspired By: Vim syntax file by Dr. Charles E. Campbell, Jr.
 
 if exists('b:current_syntax')
@@ -177,17 +177,17 @@ syntax keyword vifmOption contained aproposprg autocd autochpos caseoptions
 " Disabled boolean options
 syntax keyword vifmOption contained noautocd noautochpos nocf nochaselinks
 		\ nodotfiles nofastrun nofollowlinks nohlsearch nohls noiec noignorecase
-		\ noic noincsearch nois nolaststatus nols nolsview nomillerview nonumber
-		\ nonu noquickview norelativenumber nornu noscrollbind noscb norunexec
-		\ nosmartcase noscs nosortnumbers nosyscalls notitle notrash novimhelp
-		\ nowildmenu nowmnu nowrap nowrapscan nows
+		\ noic noincsearch nois nokeepsel nolaststatus nols nolsview nomillerview
+		\ nonumber nonu noquickview norelativenumber nornu noscrollbind noscb
+		\ norunexec nosmartcase noscs nosortnumbers nosyscalls notitle notrash
+		\ novimhelp nowildmenu nowmnu nowrap nowrapscan nows
 
 " Inverted boolean options
 syntax keyword vifmOption contained invautocd invautochpos invcf invchaselinks
 		\ invdotfiles invfastrun invfollowlinks invhlsearch invhls inviec
-		\ invignorecase invic invincsearch invis invlaststatus invls invlsview
-		\ invmillerview invnumber invnu invquickview invrelativenumber invrnu
-		\ invscrollbind invscb invrunexec invsmartcase invscs invsortnumbers
+		\ invignorecase invic invincsearch invis invkeepsel invlaststatus invls
+		\ invlsview invmillerview invnumber invnu invquickview invrelativenumber
+		\ invrnu invscrollbind invscb invrunexec invsmartcase invscs invsortnumbers
 		\ invsyscalls invtitle invtrash invvimhelp invwildmenu invwmnu invwrap
 		\ invwrapscan invws
 
