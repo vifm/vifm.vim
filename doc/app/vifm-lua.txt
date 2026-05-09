@@ -1,4 +1,4 @@
-*vifm-lua.txt*    For Vifm version 1.0  Last change: 2026 Apr 17
+*vifm-lua.txt*    For Vifm version 1.0  Last change: 2026 May 9
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -1113,6 +1113,13 @@ Possible fields of {menu}:
    Title of the menu.
  - "items" (array of strings)
    List of items.  Shouldn't be empty.
+ - "specs" (array of strings) (optional)
+   List of path specifications used for navigation.  If not provided, "items" is
+   assumed to contain the specifications.  The field is ignored if
+   "withnavigation" is false.  Must have the same length as "items".
+   Format of each item is the usual for Unix-like systems:
+     {path}[:{line}[:{column}][:{anything-else}]]
+   Menu lines that do not support navigation should be empty.
  - "view" (|vifm-l_VifmView|) (default: `vifm.currview()`)
    View associated with the menu.  Navigation will happen in this view if
    enabled.  Note: the value is currently limited to views of the current
@@ -1128,9 +1135,13 @@ Parameters:~
   {menu}  Table with information about the custom view.
 
 Return:~
-  `false` if the list of items is empty, one of the items can't be converted
-        to a string or if {menu}.view doesn't refer to the the view as
-        `vifm.currview()` or `vifm.otherview()`.
+  `false` on the following errors:
+        - if the list of items is empty
+        - if one of the items can't be converted to a string
+        - if length of items and specs don't match
+        - if one of the specs can't be converted to a string
+        - if {menu}.view doesn't refer to the same view as
+          `vifm.currview()` or `vifm.otherview()`
   `true` on success.
 
 --------------------------------------------------------------------------------
