@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 July 11
+*vifm-app.txt*    For Vifm version 0.15  Last change: 2026 July 26
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -14,6 +14,7 @@
 |vifm-commands-bg|        Backgrounding of commands.
 |vifm-cancellation|       Cancellation of commands.
 |vifm-selection|          How selection is handled on launching.
+|vifm-match-expressions|  Description of file match expressions.
 |vifm-patterns|           Description of file match patterns.
 |vifm-regexp|             Regular expressions.
 |vifm-globs|              How globs work in vifm.
@@ -427,11 +428,12 @@ zd                                             *vifm-zd*
     Files excluded this way are not counted as filtered out and can't be
     returned unless view is reloaded.
 
-=regular expression                            *vifm-=*
+=match expression                              *vifm-=*
     only keep files matching the regular expression.  This is called a local
     filter.  Whether view is updated as regular expression is changed depends
     on the value of the |vifm-'incsearch'| option.  This kind of filter is
-    automatically reset on a directory change.
+    automatically reset on a directory change.  See |vifm-match-expressions|
+    for syntax details.
 
 Tree-related Keys~
 
@@ -3343,9 +3345,46 @@ handle it:
        don't support parallel execution.
 
 --------------------------------------------------------------------------------
+*vifm-match-expressions*
+
+A match expression is an extension on top of a regular expression syntax that
+allows negation and mixing in glob and mime-type forms of matching.  This is
+achieved by treating invalid regular expressions in a special way.  A few
+invalid regular expressions that don't match anything do match something in
+places that support this extension.
+
+The approach taken is using a leading quantifier of a regular expression as a
+marker requesting a different kind of matching.  Currently, the only such
+marker is a leading `+` sign which signifies the use of |vifm-patterns| with
+glob matching by default.
+
+In other words:
+ - any valid regular expression is a match expression
+ - a match expression starting with `+` is processed as a pattern (see
+   |vifm-patterns|) after stripping the `+`; undecorated pattern is treated as
+   a list of name globs
+
+Regular expressions used in this context default to being case sensitive on
+*nix and case insensitive on Windows.
+
+Examples of local filter (|vifm-=|) values, which is the only place such
+expressions are currently handled:
+ - `=+` is the same as empty input (`=`)
+ - `=abc` is a regular expression that matches a file name containing `abc`
+ - `=+abc` is a glob that matches a file named `abc`
+ - `=+abc,def` is a glob that matches files named `abc` or `def`
+ - `=+*.pdf` is a glob that matches files that end with `.pdf`
+ - `=+//xyz//` is a path regular expression that matches files with `xyz`
+   anywhere in their paths
+ - `=+{*.mp3}!/the/` is a combination of a glob and a negated regular
+   expression which matches files that end with `.mp3` and do not contain
+   `the` in their names
+ - `=+<application/pdf>` matches PDF files by their mime-type
+
+--------------------------------------------------------------------------------
 *vifm-patterns*
 
-Some commands and options use a special pattern syntax to accept globs,
+Some commands, options and prompts use a special pattern syntax to accept globs,
 regular expressions or mime types.  This allows matching files by their names,
 paths and/or content type.
 
@@ -3374,6 +3413,7 @@ The patterns are accepted in the following places:
   |vifm-:highlight|            unsupported
   |vifm-:select|       {comma-separated-name-globs}
   |vifm-:unselect|     {comma-separated-name-globs}
+  |vifm-=|             {comma-separated-name-globs}
 
 During a match:
  - path patterns receive absolute path to the file including its name
